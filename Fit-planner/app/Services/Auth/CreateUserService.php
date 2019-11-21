@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class CreateUserService
 {
@@ -29,7 +28,6 @@ class CreateUserService
     public function register(Request $request): JsonResponse
     {
         $this->validate($request->all());
-
         if ($this->createUser($request->all())) {
             return response()->json([
                 'registered' => true

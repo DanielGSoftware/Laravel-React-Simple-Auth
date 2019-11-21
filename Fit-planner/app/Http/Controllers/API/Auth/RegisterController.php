@@ -20,5 +20,5 @@ class RegisterController
     {
         return $this->createUserService->register($request);
     }
-    
+
 }
