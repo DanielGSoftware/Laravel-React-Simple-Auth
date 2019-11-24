@@ -13,8 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('guest')->post('/register', 'API\Auth\registerController@register')->name('register');
+Route::middleware('guest.api')->group(function () {
+    Route::post('/register', 'API\Auth\registerController@register')->name('register');
+    Route::post('/login', 'API\Auth\LoginController@login')->name('login');
+});
+
 
 Route::middleware('auth:api')->group(function () {
-    
+
 });

@@ -25,4 +25,12 @@ class UserValidationService
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^\S*$/u'],
         ])->validate();
     }
+
+    public function loginValidation(array $data): array
+    {
+        return $this->validator::make($data, [
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'regex:/^\S*$/u']
+        ])->validate();
+    }
 }
