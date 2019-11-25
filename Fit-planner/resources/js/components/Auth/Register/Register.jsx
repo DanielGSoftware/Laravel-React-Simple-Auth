@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import RegisterForm from './RegisterForm';
 import axios from 'axios';
 import RegisterSuccess from './RegisterSuccess';
+import {onChange} from '../../Helpers/Utilities';
 
 export default class Register extends Component {
 
@@ -17,6 +18,7 @@ export default class Register extends Component {
                 errors: {},
                 registrationSuccess: false
             };
+        this.onChange = onChange.bind(this);
     };
 
     onRegister = (e) => {
@@ -41,10 +43,6 @@ export default class Register extends Component {
         }
     };
 
-    onChange = (e) => {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
-    };
 
     renderForms = () => {
         if (this.state.registrationSuccess) {
