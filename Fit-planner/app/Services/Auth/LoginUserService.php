@@ -35,7 +35,7 @@ class LoginUserService
     }
 
 
-    private function attemptLogin(Request $request): Boolean
+    private function attemptLogin(Request $request): bool
     {
         return $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
