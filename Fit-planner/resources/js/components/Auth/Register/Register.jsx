@@ -36,7 +36,6 @@ export default class Register extends Component {
                 password_confirmation: this.state.confirm_password
             }).then(res => {
                 this.setState({registrationSuccess: true});
-                console.log('registration successfull');
             }).catch(res => {
                 this.setState({errors: res.response.data.errors, isLoading: false})
             });

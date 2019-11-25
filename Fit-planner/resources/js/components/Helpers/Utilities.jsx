@@ -22,7 +22,6 @@ export const login = function onLogin(e) {
 
             }
         ).catch(res => {
-                console.log(res);
                 if (res.response.data.errors) {
                     this.setState({errors: res.response.data.errors})
                 } else {
