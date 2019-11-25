@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Link, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Register from './components/Auth/Register/Register';
+import {PrivateRoute, GuestRoute} from "./components/Helpers/RestrictedRoutes";
+import Login from "./components/Auth/Login/Login";
 
 class Index extends Component {
     constructor() {
@@ -11,19 +13,11 @@ class Index extends Component {
         };
     }
 
-    App = () => (
-        <div>
-            <nav>
-                <Link to="/dashboard">Dashboard</Link>
-            </nav>
-        </div>
-    );
-
     render() {
         return (
             <BrowserRouter>
-                <Route exact path="/" component={Register}/>
-                <Route exact path="/register" component={Register}/>
+                <GuestRoute exact path="/register" component={Register}/>
+                <GuestRoute exact path="/login" component={Login}/>
             </BrowserRouter>
         )
     }

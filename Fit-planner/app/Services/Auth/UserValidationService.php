@@ -30,7 +30,7 @@ class UserValidationService
     {
         return $this->validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'regex:/^\S*$/u']
+            'password' => ['required', 'string', 'regex:/^\S*$/u']
         ])->validate();
     }
 }
