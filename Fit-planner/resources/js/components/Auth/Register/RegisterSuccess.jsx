@@ -3,6 +3,10 @@ import './styles.css';
 
 export default class RegisterSuccess extends Component {
 
+    componentDidMount() {
+        this.props.login();
+    }
+
     render() {
         return (
             <div className="container d-flex vh-100">
@@ -26,7 +30,6 @@ export default class RegisterSuccess extends Component {
                     </form>
                 </div>
             </div>
-
         )
     }
 }
