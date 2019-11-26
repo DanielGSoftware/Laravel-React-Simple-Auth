@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import RegisterForm from './RegisterForm';
 import axios from 'axios';
 import RegisterSuccess from './RegisterSuccess';
+import {onChange} from '../../Helpers/Utilities';
 
 export default class Register extends Component {
 
@@ -12,11 +13,28 @@ export default class Register extends Component {
                 name: '',
                 email: '',
                 password: '',
-                confirm_password: '',
+                password_confirmation: '',
                 isLoading: false,
                 errors: {},
-                registrationSuccess: false
+                registrationSuccess: false,
             };
+        this.onChange = onChange.bind(this);
+    };
+
+
+    loginAfterRegistration = () => {
+        axios.post('/api/login', {
+                email: this.state.email,
+                password: this.state.password,
+            }
+        ).then(res => {
+                localStorage.setItem('api_token', JSON.stringify(res.data.api_token));
+                this.props.history.push("/");
+            }
+        ).catch(res => {
+                console.log(res);
+            }
+        );
     };
 
     onRegister = (e) => {
@@ -31,24 +49,24 @@ export default class Register extends Component {
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password,
-                password_confirmation: this.state.confirm_password
+                password_confirmation: this.state.password_confirmation
             }).then(res => {
                 this.setState({registrationSuccess: true});
-                console.log('registration successfull');
             }).catch(res => {
-                this.setState({errors: res.response.data.errors, isLoading: false})
-            });
+                this.setState({
+                    errors: res.response.data.errors
+                })
+            }).finally(() =>
+                this.setState({
+                    isLoading: false
+                })
+            );
         }
-    };
-
-    onChange = (e) => {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
     };
 
     renderForms = () => {
         if (this.state.registrationSuccess) {
-            return <RegisterSuccess/>
+            return <RegisterSuccess login={this.loginAfterRegistration}/>
         }
         return <RegisterForm
             onRegister={this.onRegister}
@@ -63,5 +81,4 @@ export default class Register extends Component {
             this.renderForms()
         )
     }
-
 }

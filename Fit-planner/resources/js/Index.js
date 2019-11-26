@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import Register from './components/Auth/Register/Register';
 import {PrivateRoute, GuestRoute} from "./components/Helpers/RestrictedRoutes";
 import Login from "./components/Auth/Login/Login";
