@@ -6,17 +6,8 @@ import RenderErrors from '../../Helpers/RenderErrors';
 export default class RegisterForm extends Component {
 
     renderButtonChild() {
-        const signUpBtn = $('#sign-up-btn');
-
-        let disabled;
-        this.props.isLoading ? disabled = true : disabled = false;
-
-        signUpBtn.prop('disabled', disabled);
-
-        if (disabled) {
-            return (<div className="spinner-border spinner-border-sm text-light" role="status"/>)
-        }
-        return ('Sign up');
+        return this.props.isLoading ? (
+            <div className="spinner-border spinner-border-sm text-light" role="status"/>) : ('Sign up');
     }
 
     render() {
@@ -67,7 +58,8 @@ export default class RegisterForm extends Component {
                         <RenderErrors field='password_confirmation' errors={this.props.errors}/>
                         <div className="form-group">
                             <button type="submit" onClick={this.props.onRegister}
-                                    className="btn btn-primary btn-block btn-lg" id='sign-up-btn'>
+                                    className="btn btn-primary btn-block btn-lg" id='sign-up-btn'
+                                    disabled={this.props.isLoading}>
                                 {this.renderButtonChild()}
                             </button>
                         </div>
