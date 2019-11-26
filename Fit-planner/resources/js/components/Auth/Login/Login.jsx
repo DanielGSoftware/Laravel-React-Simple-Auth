@@ -9,7 +9,7 @@ export default class Login extends Component {
             email: '',
             password: '',
             errors: {},
-            isLoading: false,
+            isLoading: false
         });
         this.onChange = onChange.bind(this);
     };
@@ -52,6 +52,4 @@ export default class Login extends Component {
             />
         )
     }
-
-
 }
