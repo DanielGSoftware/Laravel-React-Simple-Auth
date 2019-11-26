@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import LoginForm from './LoginForm';
-import {onChange, login} from '../../Helpers/Utilities';
+import {onChange} from '../../Helpers/Utilities';
+
 
 export default class Login extends Component {
     constructor() {
@@ -9,10 +10,37 @@ export default class Login extends Component {
             email: '',
             password: '',
             errors: {},
-            isLoading: false,
+            isLoading: false
         });
         this.onChange = onChange.bind(this);
-        this.onLogin = login.bind(this);
+    };
+
+    onLogin = (e) => {
+        e.preventDefault();
+        if (!this.state.isLoading) {
+            this.setState({
+                isLoading: true,
+                errors: {}
+            });
+
+            axios.post('/api/login', {
+                    email: this.state.email,
+                    password: this.state.password,
+                }
+            ).then(res => {
+                    localStorage.setItem('api_token', JSON.stringify(res.data.api_token));
+                    this.props.history.push("/");
+                }
+            ).catch(res => {
+                    if (res.response.data.errors) {
+                        this.setState({errors: res.response.data.errors})
+                    } else {
+                        this.setState({errors: res.response.data})
+                    }
+                    this.setState({isLoading: false})
+                }
+            )
+        }
     };
 
     render() {
@@ -25,6 +53,4 @@ export default class Login extends Component {
             />
         )
     }
-
-
 }
