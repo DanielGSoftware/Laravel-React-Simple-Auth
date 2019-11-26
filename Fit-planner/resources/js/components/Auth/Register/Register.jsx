@@ -50,10 +50,8 @@ export default class Register extends Component {
                 email: this.state.email,
                 password: this.state.password,
                 password_confirmation: this.state.password_confirmation
-            }).then((res) => {
-                this.setState({
-                    registrationSuccess: true
-                });
+            }).then(res => {
+                this.setState({registrationSuccess: true});
             }).catch(res => {
                 this.setState({
                     errors: res.response.data.errors
