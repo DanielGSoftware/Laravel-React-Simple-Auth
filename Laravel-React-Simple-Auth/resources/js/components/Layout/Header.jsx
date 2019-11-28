@@ -14,7 +14,7 @@ export default class Header extends Component {
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
                 <a target="_blank" rel="noopener noreferrer" className="navbar-brand"
-                   href="https://github.com/DanielGSoftware/Fit-planner/tree/master/Fit-planner">
+                   href="https://github.com/DanielGSoftware/Laravel-React-Simple-Auth">
                     <img className="img img-fluid" src="https://i.ibb.co/hRCxGkB/Github-Logo.png"/>
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
