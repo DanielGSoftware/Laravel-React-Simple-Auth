@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Boolean;
 
-class UserService
+class AuthService
 {
     private $str;
 

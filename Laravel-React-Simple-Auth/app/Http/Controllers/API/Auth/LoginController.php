@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Auth\UserService;
+use App\Services\Auth\AuthService;
 use App\Services\Auth\UserValidationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class LoginController extends Controller
     private $userService;
     private $userValidationService;
 
-    public function __construct(UserService $userService, UserValidationService $userValidationService)
+    public function __construct(AuthService $userService, UserValidationService $userValidationService)
     {
         $this->userService = $userService;
         $this->userValidationService = $userValidationService;
@@ -30,10 +30,4 @@ class LoginController extends Controller
     {
         return $this->userService->logout($request);
     }
-
-    public function isAuthenticated(): JsonResponse
-    {
-        return response()->json(['Authenticated' => true], 200);
-    }
-
 }
