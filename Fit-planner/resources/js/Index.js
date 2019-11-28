@@ -7,12 +7,6 @@ import Login from "./components/Auth/Login/Login";
 import Home from './components/Home';
 
 class Index extends Component {
-    constructor() {
-        super();
-        this.state = {
-            loggedIn: false
-        };
-    }
 
     render() {
         return (

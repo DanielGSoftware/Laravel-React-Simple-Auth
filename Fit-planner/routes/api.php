@@ -18,7 +18,6 @@ Route::middleware('guest.api')->group(function () {
     Route::post('/login', 'API\Auth\LoginController@login')->name('login');
 });
 
-
 Route::middleware('auth:api')->group(function () {
-
+    Route::post('/logout', 'API\Auth\LoginController@logout')->name('logout');
 });
