@@ -14,7 +14,6 @@ class UserService
     private $Hash;
 
     public function __construct(
-        UserValidationService $validationService,
         User $userModel,
         Hash $Hash
     )
