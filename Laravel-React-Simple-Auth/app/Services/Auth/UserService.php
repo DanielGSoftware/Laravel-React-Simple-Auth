@@ -7,10 +7,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class CreateUserService
+class UserService
 {
 
-    private $validationService;
     private $userModel;
     private $Hash;
 
@@ -20,14 +19,12 @@ class CreateUserService
         Hash $Hash
     )
     {
-        $this->validationService = $validationService;
         $this->userModel = $userModel;
         $this->Hash = $Hash;
     }
 
     public function register(Request $request): JsonResponse
     {
-        $this->validate($request->all());
         if ($this->createUser($request->all())) {
             return response()->json([
                 'registered' => true
@@ -38,11 +35,6 @@ class CreateUserService
             'registered' => false,
             'message' => 'Something went wrong. Please try again later.'
         ]);
-    }
-
-    private function validate(array $data): void
-    {
-        $this->validationService->registerValidation($data);
     }
 
     private function createUser(array $data): bool

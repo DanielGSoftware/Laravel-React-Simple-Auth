@@ -4,24 +4,27 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\GuestApi;
-use App\Services\Auth\CreateUserService;
+use App\Services\Auth\UserService;
+use App\Services\Auth\UserValidationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
 
-    private $createUserService;
+    private $userService;
+    private $userValidationService;
 
-    public function __construct(CreateUserService $createUserService)
+    public function __construct(UserService $userService, UserValidationService $userValidationService)
     {
-        $this->createUserService = $createUserService;
+        $this->userService = $userService;
+        $this->userValidationService = $userValidationService;
     }
 
     public function register(Request $request): JsonResponse
     {
-        return $this->createUserService->register($request);
+        $this->userValidationService->registerValidation($request->all());
+        return $this->userService->register($request);
     }
 
 }
