@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
-import './Header.css';
+import '../Header.css';
 import {Link} from 'react-router-dom';
+import {logout} from '../Auth/Logout/Logout';
 
 export default class Header extends Component {
+
+    constructor() {
+        super();
+        this.logout = logout.bind(this);
+    }
+
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
                 <a target="_blank" rel="noopener noreferrer" className="navbar-brand"
                    href="https://github.com/DanielGSoftware/Fit-planner/tree/master/Fit-planner">
                     <img className="img img-fluid" src="https://i.ibb.co/hRCxGkB/Github-Logo.png"/>
@@ -20,9 +27,9 @@ export default class Header extends Component {
                             <Link className="nav-link" to='/'>Home<span className="sr-only">(current)</span></Link>
                         </li>
                     </ul>
-                    <ul className="nav navbar-nav navbar-right">
-                        <li>
-                            <Link className="nav-link" to='/logout'><i className="fas fa-sign-out-alt"/> Logout </Link>
+                    <ul className="nav navbar-nav navbar-right logout">
+                        <li onClick={this.logout}>
+                            <i className="fas fa-sign-out-alt"/> Logout
                         </li>
                     </ul>
                 </div>

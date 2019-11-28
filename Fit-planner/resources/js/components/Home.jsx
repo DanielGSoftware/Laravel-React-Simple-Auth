@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
-import Header from './Header';
+import Layout from "./Layout/Layout";
 
 export default class Home extends Component {
-
     render() {
         return (
-            <React.Fragment>
-                <Header/>
+            <Layout history={this.props.history}>
                 home page
-            </React.Fragment>
+            </Layout>
         )
     }
-
 }

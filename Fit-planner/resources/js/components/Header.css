@@ -6,3 +6,7 @@
 .navbar-brand img {
     height: 120%;
 }
+
+.logout {
+    cursor: pointer;
+}
