@@ -11,23 +11,23 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    private $userService;
+    private $authService;
     private $userValidationService;
 
-    public function __construct(AuthService $userService, UserValidationService $userValidationService)
+    public function __construct(AuthService $authService, UserValidationService $userValidationService)
     {
-        $this->userService = $userService;
+        $this->authService = $authService;
         $this->userValidationService = $userValidationService;
     }
 
     public function login(Request $request): JsonResponse
     {
         $this->userValidationService->loginValidation($request->all());
-        return $this->userService->login($request);
+        return $this->authService->login($request);
     }
 
     public function logout(Request $request): JsonResponse
     {
-        return $this->userService->logout($request);
+        return $this->authService->logout($request);
     }
 }
